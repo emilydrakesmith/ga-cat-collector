@@ -12,3 +12,7 @@ def home(request):
 
 def about(request):
   return render(request, 'about.html')
+
+def cats_detail(request, cat_id):
+  cat = Cat.objects.get(id=cat_id)
+  return render(request, 'cats/detail.html', {'cat': cat})
