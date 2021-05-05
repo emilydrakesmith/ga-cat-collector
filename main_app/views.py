@@ -5,6 +5,8 @@ from .models import Cat, Toy, Photo
 from .forms import FeedingForm
 import uuid
 import boto3
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
 
 S3_BASE_URL = 'https://s3.us-east-2.amazonaws.com/'
 BUCKET = 'catcollector-audit'
@@ -29,6 +31,10 @@ def cats_detail(request, cat_id):
 class CatCreate(CreateView):
   model = Cat
   fields = ['name', 'breed', 'description', 'age']
+
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
 
 class CatUpdate(UpdateView):
   model = Cat

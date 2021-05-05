@@ -17,5 +17,6 @@ urlpatterns = [
   path('toys/', views.ToyList.as_view(), name='toys_index'),
   path('cats/<int:cat_id>/assoc_toy/<int:toy_id>/', views.assoc_toy, name='assoc_toy'),
   path('cats/<int:cat_id>/add_photo/', views.add_photo, name='add_photo'),
-
+  path('accounts/signup/', views.signup, name='signup'),
+  
 ]
